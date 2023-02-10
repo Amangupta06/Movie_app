@@ -1,5 +1,5 @@
 import { Link,useParams} from "react-router-dom";
-import React, {useEffect, useState } from 'react';
+import React,{useEffect, useState } from 'react';
 import axios from 'axios';
 
 function Actor() {
@@ -13,15 +13,15 @@ const url=`https://imdb-api.com/en/API/Name/k_nt4ls040/${actorId}`;
 
 useEffect(() => {
 
-    function fun1() {
-    const response =  axios.get(url)
-
+   async function fun1() {
+    const response = await axios.get(url)
+    console.log(response);
     setdata(response.data)
   }
 
   fun1();
 
-},[url])
+},[url]);
 
 
   return (
@@ -40,13 +40,13 @@ useEffect(() => {
         data?.knownFor?.map((movie)=>(
           <div className='actorCard'>
             <Link to={`/movie/${movie.id}`}>
-            <img src={movie?.movie} alt='movie'/>
+            <img src={movie?.image} alt='movie'/> 
             <h3>{movie?.title}</h3>
             </Link>
         </div>
         ))
 
-      }
+      };
         
            
        
